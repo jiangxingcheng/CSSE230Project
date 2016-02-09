@@ -18,7 +18,10 @@ public class mapLocation {
 		this.relations = relations;
 	}
 	
-	
+	public void addRelation(String location) {
+		this.relations.add(location);
+	}
+		
 	
 	public String getName() {
 		return name;
