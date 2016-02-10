@@ -1,0 +1,8 @@
+Locations:
+		Cities:
+				Prdoo, Rose-Hulmanistan, Chiberia, Knew York, Los Devilenes, Cashville, 
+				
+		Points of interest:
+				China Garden, Fish Girl Statue, Wacdonal's, Statue of Slavery, Maj Tahal, Red Black Tree Park, ARA
+				
+				
