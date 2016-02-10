@@ -33,12 +33,12 @@ public class mapTree extends HashMap
 
     public mapLocation searchByCost(int maxCost)
     {
-
+        return null;
     }
 
     public mapLocation searchByTime(int maxTime)
     {
-
+        return null;
     }
 
     public ArrayList<mapLocation> sortByInterest()
