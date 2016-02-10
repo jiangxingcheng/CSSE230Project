@@ -26,7 +26,7 @@ public class startFrame {
 		JPanel panel = new JPanel();
 		myFrame.add(panel);
 
-		JButton button = new JButton("start");
+		JButton button = new JButton("Start");
 		panel.setLayout(null);
 		panel.add(button);
 		button.setBounds(300, 250, 70, 35);
@@ -37,7 +37,7 @@ public class startFrame {
 			}
 		});
 
-		JButton button2 = new JButton("map");
+		JButton button2 = new JButton("Map");
 		panel.add(button2);
 		button2.setBounds(300, 300, 70, 35);
 		button2.addActionListener(new ActionListener() {
