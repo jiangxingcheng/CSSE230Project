@@ -44,7 +44,7 @@ public class startFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
 				System.out.println("Show map");
-				JFrame mapFrame = new JFrame("Map");
+				final JFrame mapFrame = new JFrame("Map");
 				mapFrame.setSize(400, 500);
 				mapFrame.setVisible(true);
 				mapFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
