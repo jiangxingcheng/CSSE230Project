@@ -40,7 +40,7 @@ public class mapTree extends HashMap
     {
 
     }
-    
+
     public ArrayList<mapLocation> sortByInterest()
     {
         return new ArrayList<>();
@@ -48,3 +48,4 @@ public class mapTree extends HashMap
 
 
 }
+
