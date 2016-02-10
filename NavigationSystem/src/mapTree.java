@@ -21,22 +21,27 @@ public class mapTree extends HashMap
         return true;
     }
 
-    public int shortestDistanceByCost(int maxCost)
+    public int distance(mapLocation startLocation, mapLocation endLocation)
     {
         return -1;
     }
 
-    public int shortestDistanceByTime(int maxTime)
+    public int shortestDistanceByCost(mapLocation startLocation, int maxCost)
     {
         return -1;
     }
 
-    public mapLocation searchByCost(int maxCost)
+    public int shortestDistanceByTime(mapLocation startLocation, int maxTime)
+    {
+        return -1;
+    }
+
+    public mapLocation nearestLocationsByCost(mapLocation startLocation, int maxCost)
     {
         return null;
     }
 
-    public mapLocation searchByTime(int maxTime)
+    public mapLocation nearestLocationsByTime(mapLocation startLocation, int maxTime)
     {
         return null;
     }
