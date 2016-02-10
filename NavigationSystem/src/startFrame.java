@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -44,8 +46,13 @@ public class startFrame {
 				System.out.println("Show map");
 				JFrame mapFrame = new JFrame("Map");
 				mapFrame.setSize(400, 500);
-				mapFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				mapFrame.setVisible(true);
+				mapFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		        mapFrame.addWindowListener(new WindowAdapter() {
+		       	public void windowClosing(WindowEvent e) {
+		       		mapFrame.dispose();
+		       	}
+				});
 
 			}
 		});
