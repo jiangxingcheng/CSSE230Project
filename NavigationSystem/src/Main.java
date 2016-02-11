@@ -1,7 +1,15 @@
 /**
+ * CSSE 230 Project: Navigation System
+ * Dr. Wollowski
+ *
+ * Team: Dank RedBlackTrees MLG FaZe
+ *
  * Main class
  *
- * @author Xingcheng Jiang.
+ * @author Xingcheng Jiang
+ * @author Zaman Maxim
+ * @author Dil Thomas
+ *
  *         Created Feb 10, 2016.
  */
 public class Main
@@ -11,5 +19,4 @@ public class Main
         startFrame start = new startFrame();
         start.startWindow();
     }
-
 }

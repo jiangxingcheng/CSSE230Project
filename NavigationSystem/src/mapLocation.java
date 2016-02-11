@@ -7,16 +7,15 @@ public class mapLocation
     String name;
     int xCoordinate;
     int yCoordinate;
-    int rating;
+    int interestRating; // Takes values 0 to 10, depending on how interesting a certain location is.
     ArrayList<String> relations;
 
-    public mapLocation(String name, int x, int y, int rating, ArrayList<String> relations)
+    public mapLocation(String name, int x, int y, int interestRating, ArrayList<String> relations)
     {
         this.name = name;
-        this.rating = rating;
+        this.interestRating = interestRating;
         xCoordinate = x;
         yCoordinate = y;
-        this.rating = rating;
         this.relations = relations;
     }
 
@@ -41,9 +40,9 @@ public class mapLocation
         return yCoordinate;
     }
 
-    public int getRating()
+    public int getinterestRating()
     {
-        return rating;
+        return interestRating;
     }
 
     public ArrayList<String> getRelations()
