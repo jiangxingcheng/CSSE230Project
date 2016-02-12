@@ -3,6 +3,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// This class returns an ArrayList of mapLocations which we can will use to build the tree.
+// The Read functionality is based on the layout below:
+// - name of location
+// - xCoordinate
+// - yCoordinate
+// - Rating (0-10)
+// - Relations (ArrayList<String>)
 
 public class Reader {
 	ArrayList<mapLocation> locations;
