@@ -1,23 +1,27 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.util.ArrayList;
 
-// This class returns an ArrayList of mapLocations which we can will use to build the tree.
-// The Read functionality is based on the layout below:
-// - name of location
-// - xCoordinate
-// - yCoordinate
-// - Rating (0-10)
-// - Relations (ArrayList<String>)
+//This class returns an ArrayList of mapLocations which we can will use to build the tree.
+//The Read functionality is based on the layout below:
+//- name of location
+//- xCoordinate
+//- yCoordinate
+//- Rating (0-10)
+//- Relations (ArrayList<String>)
 
 public class Reader {
 	ArrayList<mapLocation> locations;
 	
-	public ArrayList<mapLocation> reader() {
+	public ArrayList<mapLocation> reader() throws IOException {
 		BufferedReader levelFile = null;
 	
-		int numberOfLines = 78;
+		int numberOfLines = getTextFileLines();
+		
 		String[] line = new String[numberOfLines];
 		try
 		{
@@ -55,7 +59,6 @@ public class Reader {
 			
 			counterEnd = j;
 			while(j < line[i+4].length() && line[i+4].charAt(j) != ']' ) {
-//					System.out.println(line[i+4].charAt(j));
 				
 				while(line[i+4].charAt(j) != ']' && line[i+4].charAt(j) != ',') {
 					counterEnd++;
@@ -63,15 +66,14 @@ public class Reader {
 				}
 				if(line[i+4].charAt(j) == ',' || line[i+4].charAt(j) == ']') {
 					relation.add(line[i+4].substring(counterBegin, counterEnd));
-					System.out.println(relation.get(k));
 					k++;
 					counterBegin = counterBegin + 2;
 					counterEnd = counterEnd + 1;
 					j++;
 				}
 			}
-			
-			this.locations.add(new mapLocation(name, x, y, rating, relation));
+			System.out.println(relation.toString());  // Check for proper Relation ArrayList
+//			this.locations.add(new mapLocation(name, x, y, rating, relation));
 			
 			i = i + 6;
 
@@ -79,4 +81,13 @@ public class Reader {
 		return locations;
 		
 	}
+
+	private static int getTextFileLines() throws IOException {
+		LineNumberReader  lnr = new LineNumberReader(new FileReader(new File("src\\LocationsList.txt")));
+		lnr.skip(Long.MAX_VALUE);
+		int numReturn = lnr.getLineNumber() + 1;
+		lnr.close();
+		return numReturn;
+	}
+	
 }
