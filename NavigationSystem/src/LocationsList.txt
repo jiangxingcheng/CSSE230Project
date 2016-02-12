@@ -1,0 +1,77 @@
+Prdoo
+300
+200
+4
+[a,b,c]
+
+Rose-Hulmanistan
+300
+30
+6
+[d,c,f]
+
+Chiberia
+360
+280
+8
+[b,c,a]
+
+Knew York
+300
+430
+5
+[b,c,a]
+
+Los Devilenes
+400
+210
+4
+[b,c,a]
+
+Cashville
+40
+150
+9
+[b,c,a]
+
+China Garden
+500
+300
+3
+[b,c,a]
+
+Fish Girl Statue
+30
+300
+1
+[b,c,a]
+
+Wacdonal's
+300
+20
+6
+[b,c,a]
+
+Statue of Triviality
+300
+400
+2
+[b,c,a]
+
+Maj Tahal
+100
+200
+7
+[b,c,a]
+
+Red Black Tree Park
+10
+200
+5
+[b,c,a]
+
+ARA
+300
+100
+9
+[b,c,a]
