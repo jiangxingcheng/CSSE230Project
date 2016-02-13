@@ -42,7 +42,7 @@ public class Reader {
 			for (int i = 1; i < numberOfLines; i++)
 			{
 				line[i] = levelFile.readLine();
-				System.out.println(line[i]);
+//				System.out.println(line[i]);
 			}
 			levelFile.close();
 			
@@ -58,8 +58,8 @@ public class Reader {
 		for(int i = 1; i < numberOfLines;) {
 			
 			String name = line[i];
-			int x = Integer.parseInt(line[i+1]);
-			int y = Integer.parseInt(line[i+2]);
+			double x = Double.parseDouble(line[i+1]);
+			double y = Double.parseDouble(line[i+2]);
 			int rating = Integer.parseInt(line[i+3]);
 			
 			ArrayList<String> relation = new ArrayList<String>();
@@ -80,12 +80,12 @@ public class Reader {
 				if(line[i+4].charAt(j) == ',' || line[i+4].charAt(j) == ']') {
 					relation.add(line[i+4].substring(counterBegin, counterEnd));
 					k++;
-					counterBegin = counterBegin + 2;
+					counterBegin = counterEnd + 1;
 					counterEnd = counterEnd + 1;
 					j++;
 				}
 			}
-			System.out.println(relation.toString());  // Check for proper Relation ArrayList
+//			System.out.println(relation.toString());  // Check for proper Relation ArrayList
 			locations.add(new mapLocation(name, x, y, rating, relation));
 			
 			i = i + 6;
