@@ -17,7 +17,18 @@ import java.util.ArrayList;
 public class Reader {
 	ArrayList<mapLocation> locations;
 	
-	public ArrayList<mapLocation> reader() throws IOException {
+	public static locationMapHash main() throws IOException {
+		ArrayList<mapLocation> mapLocations = reader();
+		
+		locationMapHash hash = new locationMapHash();
+		
+		for(mapLocation place: mapLocations) {
+			hash.insert(place);
+		}
+		return hash;
+	}
+	
+	public static ArrayList<mapLocation> reader() throws IOException {
 		BufferedReader levelFile = null;
 	
 		int numberOfLines = getTextFileLines();
@@ -41,6 +52,8 @@ public class Reader {
 		}
 		
 		// Location Creation Loop
+		
+		ArrayList<mapLocation> locations = new ArrayList<mapLocation>();
 		
 		for(int i = 1; i < numberOfLines;) {
 			
@@ -73,7 +86,7 @@ public class Reader {
 				}
 			}
 			System.out.println(relation.toString());  // Check for proper Relation ArrayList
-//			this.locations.add(new mapLocation(name, x, y, rating, relation));
+			locations.add(new mapLocation(name, x, y, rating, relation));
 			
 			i = i + 6;
 
