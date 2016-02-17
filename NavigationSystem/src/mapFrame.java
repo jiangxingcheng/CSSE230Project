@@ -10,12 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MapFrame extends JFrame{
+	locationMapHash hash;
 	
-	public void startWindow() {
+	public void startWindow(locationMapHash hash) {
+		this.hash = hash;
 		JFrame mapFrame = new JFrame("Map");
 		city cities = new city();
 		mapFrame.add(cities);
-		mapFrame.setSize(400, 500);
+		mapFrame.setSize(1000, 1000);
 		mapFrame.setBackground(Color.WHITE);
 		mapFrame.setVisible(true);
 		mapFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -26,33 +28,18 @@ public class MapFrame extends JFrame{
 		});
 	}
 	public class city extends JPanel{
-		locationMapHash hash;
+		
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
-		Reader a = new Reader();
-		
-		try {
-			hash = a.main();
-		} catch (IOException exception) {
-			// TODO Auto-generated catch-block stub.
-			exception.printStackTrace();
-		}
 		
 		g2d.setColor(Color.BLACK);
-		for(String locationb: hash.keySet()){
-			mapLocation ml = hash.get(locationb);
+		for(String location: hash.keySet()) {
+			mapLocation ml = hash.get(location);
 			Ellipse2D.Double Circle = new Ellipse2D.Double(ml.xCoordinate, ml.yCoordinate, 10, 10);
-//			Ellipse2D.Double Circle2 = new Ellipse2D.Double(200,200, 10, 10);
-//			g2d.draw(Circle2);
 			g2d.draw(Circle);
-			System.out.println(ml.name);
-			System.out.println(ml.xCoordinate);
-			System.out.println(ml.yCoordinate);
-			System.out.println(ml.interestRating);
-			System.out.println(ml.relations);
-			System.out.println(" ");
+			g2d.drawString(ml.getName(), (int) ml.getX(), (int) ml.getY());
 		}
 
 	
