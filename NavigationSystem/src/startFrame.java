@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,16 +17,25 @@ import javax.swing.JPanel;
  */
 public class startFrame {
 	
-	public void startWindow() {
+	public void startWindow() throws IOException{
 		JFrame myFrame = new JFrame("Navigation System");
 		
 		
 		myFrame.setSize(400, 500);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Creation of Panel
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLUE);
 		myFrame.add(panel);
+		
+		// Implementation of Hash
+		
+		Reader reader = new Reader();
+		locationMapHash hash = reader.main();
+		
+		// Features added to Panel
 
 		JButton button = new JButton("start");
 		button.setBackground(Color.WHITE);
@@ -51,7 +61,7 @@ public class startFrame {
 				// Execute when button is pressed
 				System.out.println("Show map");
 				MapFrame myMap = new MapFrame();
-				myMap.startWindow();
+				myMap.startWindow(hash);
 			}
 		});
 
@@ -79,43 +89,37 @@ public class startFrame {
 			}
 		});
 
-		JComboBox startlocation = new JComboBox();
-		startlocation.setBackground(Color.WHITE);
-		startlocation.setForeground(Color.BLUE);
-		startlocation.setFont(f);
-		startlocation.addItem("Prdoo");
-		startlocation.addItem("Rose-Hulmanistan");
-		startlocation.addItem("Chiberia");
-		startlocation.addItem("Los Devilenes");
-		startlocation.addItem("Cashville");
-		startlocation.addItem("China Garden");
-		startlocation.addItem("Fish Girl Statue");
-		startlocation.addItem("Wacdonal's");
-		startlocation.addItem("Maj Tahal");
-		startlocation.addItem("Red Black Tree Park");
-		startlocation.addItem("ARA");
-		panel.add(startlocation);
-		startlocation.setBounds(20, 20, 150, 30);
-
-		JComboBox endLocation = new JComboBox();
+		// Defines startLocation drop-down
+		
+		JComboBox<String> startLocation = new JComboBox<String>();
+		startLocation.setBackground(Color.WHITE);
+		startLocation.setForeground(Color.BLUE);
+		startLocation.setFont(f);
+		
+		// Defines endLocation drop-down
+		
+		JComboBox<String> endLocation = new JComboBox<String>();
 		endLocation.setForeground(Color.BLUE);
 		endLocation.setFont(f);
 		endLocation.setBackground(Color.WHITE);
-		endLocation.addItem("Prdoo");
-		endLocation.addItem("Rose-Hulmanistan");
-		endLocation.addItem("Chiberia");
-		endLocation.addItem("Los Devilenes");
-		endLocation.addItem("Cashville");
-		endLocation.addItem("China Garden");
-		endLocation.addItem("Fish Girl Statue");
-		endLocation.addItem("Wacdonal's");
-		endLocation.addItem("Maj Tahal");
-		endLocation.addItem("Red Black Tree Park");
-		endLocation.addItem("ARA");
+		
+		// Adds list of Locations to drop-down menus
+		
+		for(String locationName: hash.keySet()){
+			mapLocation mL = hash.get(locationName);
+			startLocation.addItem(mL.getName());
+			endLocation.addItem(mL.getName());
+		}
+		
+		panel.add(startLocation);
+		startLocation.setBounds(20, 20, 150, 30);
+
 		panel.add(endLocation);
 		endLocation.setBounds(200, 20, 150, 30);
 
-		JComboBox options = new JComboBox();
+		// Defines cost function options drop-down
+		
+		JComboBox<String> options = new JComboBox<String>();
 		options.setForeground(Color.BLUE);
 		options.setBackground(Color.WHITE);
 		options.setFont(f);
