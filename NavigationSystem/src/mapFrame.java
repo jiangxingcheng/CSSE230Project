@@ -29,7 +29,7 @@ public class MapFrame extends JFrame{
 		locationMapHash hash;
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		
 		Graphics2D g2d = (Graphics2D) g;
 		Reader a = new Reader();
 		
@@ -44,6 +44,8 @@ public class MapFrame extends JFrame{
 		for(String locationb: hash.keySet()){
 			mapLocation ml = hash.get(locationb);
 			Ellipse2D.Double Circle = new Ellipse2D.Double(ml.xCoordinate, ml.yCoordinate, 10, 10);
+//			Ellipse2D.Double Circle2 = new Ellipse2D.Double(200,200, 10, 10);
+//			g2d.draw(Circle2);
 			g2d.draw(Circle);
 			System.out.println(ml.name);
 			System.out.println(ml.xCoordinate);
@@ -52,6 +54,7 @@ public class MapFrame extends JFrame{
 			System.out.println(ml.relations);
 			System.out.println(" ");
 		}
+
 	
 	}
 
