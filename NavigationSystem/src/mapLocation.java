@@ -5,20 +5,21 @@ public class mapLocation
 {
 
     String name;
-    public static int xCoordinate;
-    public static int yCoordinate;
+    double xCoordinate;
+    double yCoordinate;
     int interestRating; // Takes values 0 to 10, depending on how interesting a certain location is.
     ArrayList<String> relations;
 
-    public mapLocation(String name, int x, int y, int interestRating, ArrayList<String> relations)
+    public mapLocation(String name, double x, double y, int interestRating, ArrayList<String> relations)
     {
         this.name = name;
         this.interestRating = interestRating;
-        this.xCoordinate = x;
-        this.yCoordinate = y;
+        xCoordinate = x;
+        yCoordinate = y;
         this.relations = relations;
     }
-	public void addRelation(String location)
+
+    public void addRelation(String location)
     {
         this.relations.add(location);
     }
@@ -29,12 +30,12 @@ public class mapLocation
         return name;
     }
 
-    public int getX()
+    public double getX()
     {
         return xCoordinate;
     }
 
-    public int getY()
+    public double getY()
     {
         return yCoordinate;
     }
