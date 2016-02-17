@@ -1,30 +1,30 @@
 Prdoo
-300
+450
 200
 4
 [a,b,c]
 
 Rose-Hulmanistan
+550
 300
-30
 6
-[d,c,f]
+[Chiberia,c,f]
 
 Chiberia
-360
+900
 280
 8
 [b,c,a]
 
 Knew York
-300
-430
+800
+800
 5
 [b,c,a]
 
 Los Devilenes
-400
-210
+200
+800
 4
 [b,c,a]
 
@@ -35,32 +35,32 @@ Cashville
 [b,c,a]
 
 China Garden
-500
-300
+520
+100
 3
 [b,c,a]
 
 Fish Girl Statue
-30
-300
+600
+350
 1
 [b,c,a]
 
 Wacdonal's
-300
-20
+230
+850
 6
 [b,c,a]
 
 Statue of Triviality
-300
-400
+850
+860
 2
 [b,c,a]
 
 Maj Tahal
 100
-200
+900
 7
 [b,c,a]
 
@@ -71,7 +71,121 @@ Red Black Tree Park
 [b,c,a]
 
 ARA
+560
+270
+9
+[b,c,a]
+
+Las Ventis
 300
+300
+7
+[b,c,a]
+
+Springfield
+400
+700
+3
+[b,c,a]
+
+Sunnydale
+150
+630
+6
+[b,c,a]
+
+Castle Rock
 100
+60
+2
+[b,c,a]
+
+Atlantis
+306
+470
+8
+[b,c,a]
+
+Self Made Robot
+530
+500
+7
+[b,c,a]
+
+Mount Foreverest
+870
+40
+5
+[b,c,a]
+
+Pyramids of Gouda
+780
+100
+3
+[b,c,a]
+
+Colossus of Nodes
+790
+300
+4
+[b,c,a]
+
+Mau5oleum at Helicopterus
+800
+200
+3
+[b,c,a]
+
+Leaning Tower of Pizza
+500
+900
+4
+[b,c,a]
+
+Holo-sseum
+900
+900
+8
+[b,c,a]
+
+Confederate State Building
+750
+830
+9
+[b,c,a]
+
+Grey Gate Bridge
+300
+900
+7
+[b,c,a]
+
+Panomnom Canal
+460
+800
+8
+[b,c,a]
+
+Okay Canyon
+700
+500
+4
+[b,c,a]
+
+Better Canyon
+730
+620
+5
+[b,c,a]
+
+Kinda Cool Canyon
+750
+560
+6
+[b,c,a]
+
+Meh Canyon
+660
+610
 9
 [b,c,a]
