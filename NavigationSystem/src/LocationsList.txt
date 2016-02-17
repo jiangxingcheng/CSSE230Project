@@ -2,190 +2,190 @@ Prdoo
 450
 200
 4
-[a,b,c]
+[Rose-Hulmanistan,China Garden,Las Ventis,Cashville]
 
 Rose-Hulmanistan
 550
 300
 6
-[Chiberia,c,f]
+[ARA,Fish Girl Statue,Colossus of Nodes,Self Made Robot,Atlantis,Okay Canyon]
 
 Chiberia
 900
 280
 8
-[b,c,a]
+[Colossus of Nodes,Mau5oleum at Helicopterus,Mount Foreverest]
 
 Knew York
 800
 800
 5
-[b,c,a]
+[Panomnom Canal,Better Canyon,Confederate State Building,Statue of Triviality,Holo-sseum]
 
 Los Devilenes
 200
 800
 4
-[b,c,a]
+[Springfield,Wacdonal's,Maj Tahal,Sunnydale]
 
 Cashville
 40
 150
 9
-[b,c,a]
+[Prdoo,Castle Rock,Red Black Tree Park,Las Ventis]
 
 China Garden
 520
 100
 3
-[b,c,a]
+[Prdoo,Pyramids of Gouda,Mau5oleum at Helicopterus]
 
 Fish Girl Statue
 600
 350
 1
-[b,c,a]
+[Rose-Hulmanistan,Self Made Robot]
 
 Wacdonal's
 230
 850
 6
-[b,c,a]
+[Grey Gate Bridge,Los Devilenes,Maj Tahal]
 
 Statue of Triviality
-850
+830
 860
 2
-[b,c,a]
+[Knew York,Holo-sseum]
 
 Maj Tahal
 100
 900
 7
-[b,c,a]
+[Grey Gate Bridge,Wacdonal's,Los Devilenes]
 
 Red Black Tree Park
 10
 200
 5
-[b,c,a]
+[Cashville]
 
 ARA
-560
-270
+500
+300
 9
-[b,c,a]
+[Rose-Hulmanistan]
 
 Las Ventis
 300
 300
 7
-[b,c,a]
+[Prdoo,Cashville,Atlantis]
 
 Springfield
 400
 700
 3
-[b,c,a]
+[Meh Canyon,Panomnom Canal,Sunnydale,Los Devilenes,Atlantis]
 
 Sunnydale
 150
 630
 6
-[b,c,a]
+[Springfield,Los Devilenes,Atlantis]
 
 Castle Rock
 100
 60
 2
-[b,c,a]
+[Cashville,Prdoo]
 
 Atlantis
 306
 470
 8
-[b,c,a]
+[Las Ventis,Rose-Hulmanistan,Springfield,Sunnydale,Self Made Robot]
 
 Self Made Robot
 530
 500
 7
-[b,c,a]
+[Rose-Hulmanistan,Okay Canyon,Atlantis,Fish Girl Statue]
 
 Mount Foreverest
 870
 40
 5
-[b,c,a]
+[Pyramids of Gouda,Chiberia]
 
 Pyramids of Gouda
 780
 100
 3
-[b,c,a]
+[Mau5oleum at Helicopterus,China Garden,Mount Foreverest]
 
 Colossus of Nodes
 790
 300
 4
-[b,c,a]
+[Rose-Hulmanistan,Chiberia,Mau5oleum at Helicopterus]
 
 Mau5oleum at Helicopterus
 800
 200
 3
-[b,c,a]
+[Chiberia,Colossus of Nodes,Pyramids of Gouda]
 
 Leaning Tower of Pizza
 500
 900
 4
-[b,c,a]
+[Panomnom Canal,Grey Gate Bridge,Confederate State Building]
 
 Holo-sseum
 900
 900
 8
-[b,c,a]
+[Statue of Triviality,Knew York]
 
 Confederate State Building
 750
 830
 9
-[b,c,a]
+[Knew York,Leaning Tower of Pizza]
 
 Grey Gate Bridge
 300
-900
+920
 7
-[b,c,a]
+[Panomnom Canal,Leaning Tower of Pizza,Wacdonal's,Maj Tahal]
 
 Panomnom Canal
 460
 800
 8
-[b,c,a]
+[Springfield,Leaning Tower of Pizza,Grey Gate Bridge,Knew York]
 
 Okay Canyon
 700
 500
 4
-[b,c,a]
+[Rose-Hulmanistan,Better Canyon,Kinda Cool Canyon,Meh Canyon,Self Made Robot]
 
 Better Canyon
 730
 620
 5
-[b,c,a]
+[Kinda Cool Canyon,Meh Canyon,Okay Canyon,Knew York]
 
 Kinda Cool Canyon
 750
 560
 6
-[b,c,a]
+[Okay Canyon,Meh Canyon,Better Canyon]
 
 Meh Canyon
 660
 610
 9
-[b,c,a]
+[Okay Canyon,Better Canyon,Kinda Cool Canyon,Springfield]
