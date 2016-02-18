@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,7 +14,7 @@ public class RatingFrame extends JFrame
     public RatingFrame(locationMapHash hash)
     {
         this.hash = hash;
-        setSize(210, 640);
+        setSize(260, 770);
         setResizable(false);
         //pack();
         setVisible(true);
@@ -52,11 +53,13 @@ public class RatingFrame extends JFrame
         panel.setBackground(Color.DARK_GRAY);
         panel.setSize(getSize());
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        Font f = new Font(null, Font.PLAIN, 16);
         for (String city: hash.sortByInterest())
         {
             JLabel rating = new JLabel(city + " " + hash.get(city).getinterestRating() + "/10", SwingConstants.CENTER);
             rating.setBackground(null);
-            rating.setBorder(new BevelBorder(BevelBorder.RAISED));
+            rating.setFont(f);
+            rating.setBorder(new BevelBorder(BevelBorder.LOWERED));
             rating.setForeground(Color.WHITE);
             panel.add(rating);
             rating.setAlignmentX(Component.CENTER_ALIGNMENT);
