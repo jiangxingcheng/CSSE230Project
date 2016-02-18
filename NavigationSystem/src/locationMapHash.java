@@ -49,7 +49,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
     public ArrayList<String> sortByInterest()
     {
         ArrayList<String> arrayListByInterest = new ArrayList<>();
-        for (int interestScore = 10; interestScore <= 0; interestScore--)
+        for (int interestScore = 10; interestScore >= 0; interestScore--)
         {
             for (String locationName : keySet())
             {
