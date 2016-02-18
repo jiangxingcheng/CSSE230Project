@@ -18,6 +18,12 @@ public class startFrame {
 	public void startWindow() throws IOException{
 		JFrame myFrame = new JFrame("Navigation System");
 
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		myFrame.setResizable(false);
 		
 		myFrame.setSize(500, 500);
