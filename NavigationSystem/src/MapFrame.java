@@ -18,7 +18,7 @@ public class MapFrame extends JFrame{
 		city cities = new city();
 		mapFrame.add(cities);
 		mapFrame.setSize(1000, 1000);
-		mapFrame.setBackground(Color.WHITE);
+		mapFrame.setBackground(Color.GRAY);
 		mapFrame.setVisible(true);
 		mapFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		mapFrame.addWindowListener(new WindowAdapter() {

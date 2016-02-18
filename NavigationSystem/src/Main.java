@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * CSSE 230 Project: Navigation System
  * Dr. Wollowski
@@ -14,7 +16,7 @@
  */
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         startFrame start = new startFrame();
         start.startWindow();

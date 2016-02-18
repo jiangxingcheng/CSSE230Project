@@ -4,10 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 /**
  * 
  * Create a start frame with buttons have actionListener
@@ -19,16 +17,26 @@ public class startFrame {
 	
 	public void startWindow() throws IOException{
 		JFrame myFrame = new JFrame("Navigation System");
+
+		myFrame.setResizable(false);
 		
-		
-		myFrame.setSize(400, 500);
+		myFrame.setSize(500, 500);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Creation of Panel
 
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.BLUE);
+		panel.setSize(500, 250);
+		panel.setBackground(Color.DARK_GRAY);
+
+		JPanel panel1 = new JPanel();
+		panel1.setSize(500, 250);
+		panel1.setBackground(Color.LIGHT_GRAY);
+
+		panel1.setLayout(null);
+
 		myFrame.add(panel);
+		myFrame.add(panel1);
 		
 		// Implementation of Hash
 		
@@ -37,13 +45,12 @@ public class startFrame {
 		
 		// Features added to Panel
 
-		JButton button = new JButton("start");
+		JButton button = new JButton("Start");
 		button.setBackground(Color.WHITE);
-		Font f = new Font(null, Font.ITALIC,16);
+		Font f = new Font(null, Font.PLAIN, 16);
 		button.setFont(f);
-		panel.setLayout(null);
-		panel.add(button);
-		button.setBounds(300, 250, 70, 35);
+		panel1.add(button);
+		button.setBounds(360, 260, 90, 35);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
@@ -51,11 +58,11 @@ public class startFrame {
 			}
 		});
 
-		JButton button2 = new JButton("map");
+		JButton button2 = new JButton("Map");
 		button2.setBackground(Color.WHITE);
 		button2.setFont(f);
-		panel.add(button2);
-		button2.setBounds(300, 300, 70, 35);
+		panel1.add(button2);
+		button2.setBounds(360, 310, 90, 35);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
@@ -68,8 +75,8 @@ public class startFrame {
 		JButton button3 = new JButton("Reset");
 		button3.setFont(f);
 		button3.setBackground(Color.WHITE);
-		panel.add(button3);
-		button3.setBounds(300, 350, 70, 35);
+		panel1.add(button3);
+		button3.setBounds(360, 360, 90, 35);
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
@@ -80,8 +87,8 @@ public class startFrame {
 		JButton button4 = new JButton("Exit");
 		button4.setFont(f);
 		button4.setBackground(Color.WHITE);
-		panel.add(button4);
-		button4.setBounds(300, 400, 70, 35);
+		panel1.add(button4);
+		button4.setBounds(360, 410, 90, 35);
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
@@ -112,10 +119,10 @@ public class startFrame {
 		}
 		
 		panel.add(startLocation);
-		startLocation.setBounds(20, 20, 150, 30);
+		startLocation.setBounds(20, 20, 200, 30);
 
 		panel.add(endLocation);
-		endLocation.setBounds(200, 20, 150, 30);
+		endLocation.setBounds(260, 20, 200, 30);
 
 		// Defines cost function options drop-down
 		
@@ -125,8 +132,9 @@ public class startFrame {
 		options.setFont(f);
 		options.addItem("Cost By Distance");
 		options.addItem("Cost By Time");
-		panel.add(options);
-		options.setBounds(20, 250, 150, 30);
+
+		panel1.add(options);
+		options.setBounds(20, 260, 200, 30);
 
 		myFrame.setVisible(true);
 

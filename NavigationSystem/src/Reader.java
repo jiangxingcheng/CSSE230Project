@@ -36,7 +36,7 @@ public class Reader {
 		String[] line = new String[numberOfLines];
 		try
 		{
-			levelFile = new BufferedReader(new FileReader("src\\LocationsList.txt"));
+			levelFile = new BufferedReader(new FileReader("src//LocationsList.txt"));
 			
 			
 			for (int i = 1; i < numberOfLines; i++)
@@ -96,7 +96,7 @@ public class Reader {
 	}
 
 	private static int getTextFileLines() throws IOException {
-		LineNumberReader  lnr = new LineNumberReader(new FileReader(new File("src\\LocationsList.txt")));
+		LineNumberReader  lnr = new LineNumberReader(new FileReader(new File("src//LocationsList.txt")));
 		lnr.skip(Long.MAX_VALUE);
 		int numReturn = lnr.getLineNumber() + 1;
 		lnr.close();
