@@ -1,8 +1,191 @@
-Locations:
-		Cities:
-				Prdoo, Rose-Hulmanistan, Chiberia, Knew York, Los Devilenes, Cashville, 
-				
-		Points of interest:
-				China Garden, Fish Girl Statue, Wacdonal's, Statue of Slavery, Maj Tahal, Red Black Tree Park, ARA
-				
-				
+Prdoo
+450
+200
+4
+[Rose-Hulmanistan,China Garden,Las Ventis,Cashville]
+
+Rose-Hulmanistan
+550
+300
+6
+[ARA,Fish Girl Statue,Colossus of Nodes,Self Made Robot,Atlantis,Okay Canyon]
+
+Chiberia
+900
+280
+8
+[Colossus of Nodes,Mau5oleum at Helicopterus,Mount Foreverest]
+
+Knew York
+800
+800
+5
+[Panomnom Canal,Better Canyon,Confederate State Building,Statue of Triviality,Holo-sseum]
+
+Los Devilenes
+200
+800
+4
+[Springfield,Wacdonal's,Maj Tahal,Sunnydale]
+
+Cashville
+40
+150
+9
+[Prdoo,Castle Rock,Red Black Tree Park,Las Ventis]
+
+China Garden
+520
+100
+3
+[Prdoo,Pyramids of Gouda,Mau5oleum at Helicopterus]
+
+Fish Girl Statue
+600
+350
+1
+[Rose-Hulmanistan,Self Made Robot]
+
+Wacdonal's
+230
+850
+6
+[Grey Gate Bridge,Los Devilenes,Maj Tahal]
+
+Statue of Triviality
+830
+860
+2
+[Knew York,Holo-sseum]
+
+Maj Tahal
+100
+900
+7
+[Grey Gate Bridge,Wacdonal's,Los Devilenes]
+
+Red Black Tree Park
+10
+200
+5
+[Cashville]
+
+ARA
+500
+300
+9
+[Rose-Hulmanistan]
+
+Las Ventis
+300
+300
+7
+[Prdoo,Cashville,Atlantis]
+
+Springfield
+400
+700
+3
+[Meh Canyon,Panomnom Canal,Sunnydale,Los Devilenes,Atlantis]
+
+Sunnydale
+150
+630
+6
+[Springfield,Los Devilenes,Atlantis]
+
+Castle Rock
+100
+60
+2
+[Cashville,Prdoo]
+
+Atlantis
+306
+470
+8
+[Las Ventis,Rose-Hulmanistan,Springfield,Sunnydale,Self Made Robot]
+
+Self Made Robot
+530
+500
+7
+[Rose-Hulmanistan,Okay Canyon,Atlantis,Fish Girl Statue]
+
+Mount Foreverest
+870
+40
+5
+[Pyramids of Gouda,Chiberia]
+
+Pyramids of Gouda
+780
+100
+3
+[Mau5oleum at Helicopterus,China Garden,Mount Foreverest]
+
+Colossus of Nodes
+790
+300
+4
+[Rose-Hulmanistan,Chiberia,Mau5oleum at Helicopterus]
+
+Mau5oleum at Helicopterus
+800
+200
+3
+[Chiberia,Colossus of Nodes,Pyramids of Gouda]
+
+Leaning Tower of Pizza
+500
+900
+4
+[Panomnom Canal,Grey Gate Bridge,Confederate State Building]
+
+Holo-sseum
+900
+900
+8
+[Statue of Triviality,Knew York]
+
+Confederate State Building
+750
+830
+9
+[Knew York,Leaning Tower of Pizza]
+
+Grey Gate Bridge
+300
+920
+7
+[Panomnom Canal,Leaning Tower of Pizza,Wacdonal's,Maj Tahal]
+
+Panomnom Canal
+460
+800
+8
+[Springfield,Leaning Tower of Pizza,Grey Gate Bridge,Knew York]
+
+Okay Canyon
+700
+500
+4
+[Rose-Hulmanistan,Better Canyon,Kinda Cool Canyon,Meh Canyon,Self Made Robot]
+
+Better Canyon
+730
+620
+5
+[Kinda Cool Canyon,Meh Canyon,Okay Canyon,Knew York]
+
+Kinda Cool Canyon
+750
+560
+6
+[Okay Canyon,Meh Canyon,Better Canyon]
+
+Meh Canyon
+660
+610
+9
+[Okay Canyon,Better Canyon,Kinda Cool Canyon,Springfield]
