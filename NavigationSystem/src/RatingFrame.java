@@ -14,7 +14,6 @@ public class RatingFrame extends JFrame
     public RatingFrame(locationMapHash hash)
     {
         this.hash = hash;
-        setSize(260, 770);
         setResizable(false);
         //pack();
         setVisible(true);
@@ -54,16 +53,33 @@ public class RatingFrame extends JFrame
         panel.setSize(getSize());
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         Font f = new Font(null, Font.PLAIN, 16);
-        for (String city: hash.sortByInterest())
+        String ratingText = "";
+        for (int i = 0; i < hash.sortByInterest().size(); i++)
         {
-            JLabel rating = new JLabel(city + " " + hash.get(city).getinterestRating() + "/10", SwingConstants.CENTER);
-            rating.setBackground(null);
-            rating.setFont(f);
-            rating.setBorder(new BevelBorder(BevelBorder.LOWERED));
-            rating.setForeground(Color.WHITE);
-            panel.add(rating);
-            rating.setAlignmentX(Component.CENTER_ALIGNMENT);
+            String city = hash.sortByInterest().get(i);
+            if (i == 0)
+            {
+                ratingText = ratingText + "<html><span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br>";
+            }
+            else if (i == hash.sortByInterest().size() - 1)
+            {
+                ratingText =  ratingText + "<span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br></html>";
+            }
+            else
+            {
+                ratingText =  ratingText + "<span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br>";
+            }
         }
+
+        JLabel rating = new JLabel(ratingText, SwingConstants.CENTER);
+        rating.setBackground(null);
+        rating.setFont(f);
+        rating.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        rating.setForeground(Color.WHITE);
+
+        setSize(300, hash.size()*20);
+        panel.add(rating);
+        rating.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(panel);
 
     }

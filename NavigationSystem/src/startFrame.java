@@ -28,7 +28,7 @@ public class startFrame {
 		myFrame.setResizable(false);
 		myFrame.pack();
 
-		myFrame.setSize(500, 500);
+		myFrame.setSize(500, 320);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		try {
@@ -61,12 +61,36 @@ public class startFrame {
 
 
 		JPanel panel1 = new JPanel();
-		panel1.setMaximumSize(new Dimension(500, 330));
-		panel1.setMaximumSize(new Dimension(500, 330));
-		panel1.setMaximumSize(new Dimension(500, 330));
+		panel1.setMaximumSize(new Dimension(500, 110));
+		panel1.setMaximumSize(new Dimension(500, 110));
+		panel1.setMaximumSize(new Dimension(500, 110));
 		panel1.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(5, 5, 5, 5), new CompoundBorder(new BevelBorder(BevelBorder.LOWERED), new TitledBorder("Trip Planner"))));
 		panel1.setBackground(Color.LIGHT_GRAY);
-		panel1.setLayout(new GridLayout(4, 4));
+		panel1.setLayout(new GridLayout(2, 4));
+
+		JComboBox<String> dropDown = new JComboBox<>();
+		dropDown.addItem("Amount of time to spend");
+		dropDown.addItem("Distance to travel");
+		dropDown.setBackground(Color.GREEN);
+
+		JTextField dropDownInput = new JTextField();
+		dropDownInput.setBackground(Color.DARK_GRAY);
+		dropDownInput.setForeground(Color.WHITE);
+
+		JButton goButton = new JButton("Go!");
+		goButton.setForeground(Color.WHITE);
+		goButton.setBackground(Color.DARK_GRAY);
+
+		JComboBox<String> options = new JComboBox<String>();
+		options.setBackground(Color.GREEN);
+		options.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		options.addItem("Cost By Distance");
+		options.addItem("Cost By Time");
+
+		panel1.add(dropDown);
+		panel1.add(dropDownInput);
+		panel1.add(options);
+		panel1.add(goButton);
 
 		JPanel panel2 = new JPanel();
 		panel2.setMaximumSize(new Dimension(500, 90));
@@ -76,7 +100,6 @@ public class startFrame {
 		panel2.setBackground(Color.DARK_GRAY);
 		panel2.setLayout(new FlowLayout());
 
-		
 		// Implementation of Hash
 		
 		Reader reader = new Reader();
@@ -86,8 +109,9 @@ public class startFrame {
 		// Features added to Panel
 
 		JButton button = new JButton("Start");
-		button.setBackground(Color.WHITE);
-		Font f = new Font(null, Font.PLAIN, 16);
+		button.setBackground(Color.DARK_GRAY);
+		button.setForeground(Color.WHITE);
+		Font f = new Font("Times New Roman", Font.PLAIN, 16);
 		button.setFont(f);
 		panel2.add(button);
 		//button.setBounds(360, 260, 90, 35);
@@ -100,7 +124,8 @@ public class startFrame {
 
 		JButton button1 = new JButton("Sort by Interest");
 		button1.setFont(f);
-		button1.setBackground(Color.WHITE);
+		button1.setBackground(Color.DARK_GRAY);
+		button1.setForeground(Color.WHITE);
 		panel2.add(button1);
 		//button4.setBounds(360, 410, 90, 35);
 		button1.addActionListener(new ActionListener() {
@@ -113,7 +138,8 @@ public class startFrame {
 		});
 
 		JButton button2 = new JButton("Map");
-		button2.setBackground(Color.WHITE);
+		button2.setBackground(Color.DARK_GRAY);
+		button2.setForeground(Color.WHITE);
 		button2.setFont(f);
 		panel2.add(button2);
 		//button2.setBounds(360, 310, 90, 35);
@@ -128,7 +154,8 @@ public class startFrame {
 
 		JButton button3 = new JButton("Reset");
 		button3.setFont(f);
-		button3.setBackground(Color.WHITE);
+		button3.setBackground(Color.DARK_GRAY);
+		button3.setForeground(Color.WHITE);
 		panel2.add(button3);
 		//button3.setBounds(360, 360, 90, 35);
 		button3.addActionListener(new ActionListener() {
@@ -140,7 +167,8 @@ public class startFrame {
 
 		JButton button4 = new JButton("Exit");
 		button4.setFont(f);
-		button4.setBackground(Color.WHITE);
+		button4.setBackground(Color.DARK_GRAY);
+		button4.setForeground(Color.WHITE);
 		panel2.add(button4);
 		//button4.setBounds(360, 410, 90, 35);
 		button4.addActionListener(new ActionListener() {
@@ -154,16 +182,14 @@ public class startFrame {
 		// Defines startLocation drop-down
 		
 		JComboBox<String> startLocation = new JComboBox<String>();
-		startLocation.setBackground(Color.WHITE);
-		startLocation.setForeground(Color.BLUE);
+		startLocation.setBackground(Color.GREEN);
 		startLocation.setFont(f);
 		
 		// Defines endLocation drop-down
 		
 		JComboBox<String> endLocation = new JComboBox<String>();
-		endLocation.setForeground(Color.BLUE);
 		endLocation.setFont(f);
-		endLocation.setBackground(Color.WHITE);
+		endLocation.setBackground(Color.GREEN);
 		
 		// Adds list of Locations to drop-down menus
 		
@@ -194,15 +220,6 @@ public class startFrame {
 
 		// Defines cost function options drop-down
 		
-		JComboBox<String> options = new JComboBox<String>();
-		options.setForeground(Color.BLUE);
-		options.setBackground(Color.WHITE);
-		options.setFont(f);
-		options.addItem("Cost By Distance");
-		options.addItem("Cost By Time");
-
-
-		panel1.add(options);
 
 		myFrame.add(panel);
 		myFrame.add(panel1);
