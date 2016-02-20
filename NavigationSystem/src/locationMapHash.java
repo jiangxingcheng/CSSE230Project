@@ -23,9 +23,10 @@ public class locationMapHash extends HashMap<String, mapLocation>
         return true;
     }
 
-    public double startingDistance(mapLocation startLocation, mapLocation endLocation)
+    public ArrayList<String> startingDistance(mapLocation startLocation, mapLocation endLocation)
     {
         paths = new HashMap<>();
+        int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
             double distanceTraveled = 0;
@@ -38,7 +39,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
             }
             else
             {
-                distance(relation, locationsTraveled, distanceTraveled, endLocation);
+                distance(relation, locationsTraveled, distanceTraveled, endLocation, nodesTraveled);
             }
         }
         double min = 0;
@@ -53,31 +54,45 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 if (distance < min)
                 {
                     min = distance;
+//                    System.out.println(min);
                 }
             }
         }
-        return min;
+        return paths.get(min);
     }
 
-    public void distance(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, mapLocation endLocation)
+    public void distance(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, mapLocation endLocation, int nodesTraveled)
     {
         locationsTraveled.add(currentLocation);
         mapLocation currMapLocation = this.get(currentLocation);
+        nodesTraveled++;
+        
         for (String relation: currMapLocation.getRelations())
         {
             if (!locationsTraveled.contains(relation))
             {
                 double newDistanceTraveled = distanceTraveled;
-                ArrayList<String> newLocationsTraveled;
-                newLocationsTraveled = locationsTraveled;
+
+                ArrayList<String> newLocationsTraveled = new ArrayList<String>();
+                for(String location: locationsTraveled) {
+                	newLocationsTraveled.add(location);
+                }
+                
                 newDistanceTraveled += currMapLocation.distance(this.get(relation));
                 if (this.get(relation) == endLocation)
                 {
+                	nodesTraveled++;
+                	newLocationsTraveled.add(relation);
+//                	System.out.println(nodesTraveled);
+//                	System.out.println(this.get(relation).getName());
                     paths.put(newDistanceTraveled, newLocationsTraveled);
+//                    System.out.println(locationsTraveled);
+//                    System.out.println(newDistanceTraveled);
+                    return;
                 }
                 else
                 {
-                    distance(relation, newLocationsTraveled, newDistanceTraveled, endLocation);
+                    distance(relation, newLocationsTraveled, newDistanceTraveled, endLocation, nodesTraveled);
                 }
             }
         }
