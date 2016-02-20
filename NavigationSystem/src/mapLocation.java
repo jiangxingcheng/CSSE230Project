@@ -49,4 +49,14 @@ public class mapLocation
     {
         return relations;
     }
+
+    public double distance(mapLocation end)
+    {
+        double differenceBetweenX = this.xCoordinate - end.xCoordinate;
+        double differenceBetweenY = this.yCoordinate - end.yCoordinate;
+
+        double result = Math.sqrt(Math.pow(differenceBetweenX, 2) + Math.pow(differenceBetweenY, 2));
+
+        return result;
+    }
 }
