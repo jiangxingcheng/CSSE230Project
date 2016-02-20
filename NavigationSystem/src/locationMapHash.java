@@ -22,10 +22,14 @@ public class locationMapHash extends HashMap<String, mapLocation>
         this.size++;
         return true;
     }
+    
+    
 
-    public ArrayList<String> startingDistance(mapLocation startLocation, mapLocation endLocation)
+    public HashMap<Double, ArrayList<String>> startingDistance(mapLocation startLocation, mapLocation endLocation)
     {
         paths = new HashMap<>();
+        HashMap<Double, ArrayList<String>> result = new HashMap<>();
+        
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
@@ -58,7 +62,8 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 }
             }
         }
-        return paths.get(min);
+        result.put(min, paths.get(min));
+        return result;
     }
 
     public void distance(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, mapLocation endLocation, int nodesTraveled)
@@ -86,8 +91,8 @@ public class locationMapHash extends HashMap<String, mapLocation>
 //                	System.out.println(nodesTraveled);
 //                	System.out.println(this.get(relation).getName());
                     paths.put(newDistanceTraveled, newLocationsTraveled);
-//                    System.out.println(locationsTraveled);
-//                    System.out.println(newDistanceTraveled);
+//                  System.out.println(locationsTraveled);
+//                  System.out.println(newDistanceTraveled);
                     return;
                 }
                 else
@@ -106,11 +111,6 @@ public class locationMapHash extends HashMap<String, mapLocation>
     public int shortestDistanceByTime(mapLocation startLocation, int maxTime)
     {
         return -1;
-    }
-
-    public mapLocation nearestLocationsByCost(mapLocation startLocation, int maxCost)
-    {
-        return null;
     }
 
     public mapLocation nearestLocationsByTime(mapLocation startLocation, int maxTime)
