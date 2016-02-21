@@ -1,21 +1,31 @@
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Created by zamanmm on 2/17/16.
+ * Sets up Interest Rating frame for user viewing
  */
 public class RatingFrame extends JFrame
 {
     private locationMapHash hash;
+    
     public RatingFrame(locationMapHash hash)
     {
+
+    	
         this.hash = hash;
-        setResizable(false);
-        //pack();
+        
+        int verticalSize = hash.size * 22;
+        int horizontalSize = 400;
+        Dimension size = new Dimension(horizontalSize, verticalSize);
+        
+        getContentPane().setBackground(Color.gray);
+        setMinimumSize(size);
+        pack();
+        setResizable(true);
+        setTitle("Interest Rating (0-10)");
         setVisible(true);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -46,40 +56,31 @@ public class RatingFrame extends JFrame
         concatRatings();
     }
     
+    
+    
     private void concatRatings()
     {
         JPanel panel = new JPanel();
-        panel.setBackground(Color.DARK_GRAY);
         panel.setSize(getSize());
+        panel.setBackground(Color.DARK_GRAY);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        Font f = new Font(null, Font.PLAIN, 16);
-        String ratingText = "";
-        for (int i = 0; i < hash.sortByInterest().size(); i++)
+        panel.setBorder(new BevelBorder(BevelBorder.RAISED));
+        
+        JLabel title = new JLabel("Interest Rating");
+        title.setBorder(new BevelBorder(BevelBorder.RAISED));
+        title.setForeground(Color.cyan);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(title);
+        
+        for (String city: hash.sortByInterest())
         {
-            String city = hash.sortByInterest().get(i);
-            if (i == 0)
-            {
-                ratingText = ratingText + "<html><span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br>";
-            }
-            else if (i == hash.sortByInterest().size() - 1)
-            {
-                ratingText =  ratingText + "<span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br></html>";
-            }
-            else
-            {
-                ratingText =  ratingText + "<span class='left'>" + city + "&nbsp;&nbsp; = &nbsp;&nbsp;" + hash.get(city).getinterestRating() + "/10</span><br>";
-            }
+            JLabel rating = new JLabel(city + ": " + hash.get(city).getinterestRating(), SwingConstants.CENTER);
+            rating.setBackground(null);
+            rating.setBorder(new BevelBorder(BevelBorder.RAISED));
+            rating.setForeground(Color.WHITE);
+            panel.add(rating);
+            rating.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
-
-        JLabel rating = new JLabel(ratingText, SwingConstants.CENTER);
-        rating.setBackground(null);
-        rating.setFont(f);
-        rating.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        rating.setForeground(Color.WHITE);
-
-        setSize(300, hash.size()*20);
-        panel.add(rating);
-        rating.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(panel);
 
     }
