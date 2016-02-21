@@ -1,11 +1,23 @@
-import com.sun.xml.internal.org.jvnet.fastinfoset.stax.LowLevelFastInfosetStreamWriter;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -19,9 +31,16 @@ import javax.swing.border.TitledBorder;
  *         Created Feb 10, 2016.
  */
 public class startFrame {
-	
+	public String startelement;
+	public String endelement;
+	protected JComboBox<String> endLocation;
+	protected JComboBox<String> startLocationbox;
+	protected JTextField dropDownInput;
+	protected MapFrame myMap;
+	protected JComboBox<String> dropDown;
+	protected locationMapHash hash;
 	public void startWindow() throws IOException{
-
+		
 		JFrame myFrame = new JFrame("Navigation System");
 		myFrame.getContentPane().setLayout(new BoxLayout(myFrame.getContentPane(),
 				BoxLayout.Y_AXIS));
@@ -51,6 +70,8 @@ public class startFrame {
 		
 		// Creation of Panel
 
+		
+		
 		JPanel panel = new JPanel();
 		panel.setMaximumSize(new Dimension(500, 100));
 		panel.setMaximumSize(new Dimension(500, 100));
@@ -67,19 +88,34 @@ public class startFrame {
 		panel1.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(5, 5, 5, 5), new CompoundBorder(new BevelBorder(BevelBorder.LOWERED), new TitledBorder("Trip Planner"))));
 		panel1.setBackground(Color.LIGHT_GRAY);
 		panel1.setLayout(new GridLayout(2, 4));
-
-		JComboBox<String> dropDown = new JComboBox<>();
-		dropDown.addItem("Amount of time to spend");
+		
+		// create hash
+		Reader reader = new Reader();
+		hash = reader.main();
+		
+		dropDown = new JComboBox<>();
 		dropDown.addItem("Distance to travel");
+		dropDown.addItem("Amount of time to spend");
+		
 		dropDown.setBackground(Color.GREEN);
 
-		JTextField dropDownInput = new JTextField();
+		dropDownInput = new JTextField();
 		dropDownInput.setBackground(Color.DARK_GRAY);
 		dropDownInput.setForeground(Color.WHITE);
 
 		JButton goButton = new JButton("Go!");
 		goButton.setForeground(Color.WHITE);
 		goButton.setBackground(Color.DARK_GRAY);
+		goButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Execute when button is pressed
+				//myMap.startWindow(hash);
+				myMap.hash=hash;
+				myMap.endcity=endLocation.getSelectedItem().toString();
+				myMap.startcity = startLocationbox.getSelectedItem().toString();
+				System.out.println("show path");
+			}
+		});
 
 		JComboBox<String> options = new JComboBox<String>();
 		options.setBackground(Color.GREEN);
@@ -102,9 +138,8 @@ public class startFrame {
 
 		// Implementation of Hash
 		
-		Reader reader = new Reader();
-		locationMapHash hash = reader.main();
-		System.out.println(hash);
+		
+		//System.out.println(hash);
 		
 		// Features added to Panel
 
@@ -119,6 +154,14 @@ public class startFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
 				System.out.println("Let's start");
+				endelement =endLocation.getSelectedItem().toString();
+				startelement = startLocationbox.getSelectedItem().toString();
+				if(dropDown.getSelectedItem().toString().equals("Distance to travel")){
+					dropDownInput.setText(hash.startingDistance(hash.get(startelement),hash.get(endelement)).get(0)+"km");
+				}else{
+					dropDownInput.setText(hash.startingTime(hash.get(startelement),hash.get(endelement)).get(0)+"h");
+				}
+				System.out.println(hash.startingDistance(hash.get(startelement),hash.get(endelement)).subList(1,hash.startingDistance(hash.get(startelement),hash.get(endelement)).size()));
 			}
 		});
 
@@ -147,7 +190,9 @@ public class startFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
 				System.out.println("Show map");
-				MapFrame myMap = new MapFrame();
+				myMap = new MapFrame();
+				myMap.endcity=endLocation.getSelectedItem().toString();
+				myMap.startcity = startLocationbox.getSelectedItem().toString();
 				myMap.startWindow(hash);
 			}
 		});
@@ -161,7 +206,9 @@ public class startFrame {
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
-				System.out.println("Let's do Reset");
+				dropDownInput.setText("0.0km");
+				startLocationbox.setSelectedIndex(0);
+				endLocation.setSelectedIndex(0);
 			}
 		});
 
@@ -181,13 +228,13 @@ public class startFrame {
 
 		// Defines startLocation drop-down
 		
-		JComboBox<String> startLocation = new JComboBox<String>();
-		startLocation.setBackground(Color.GREEN);
-		startLocation.setFont(f);
+		startLocationbox = new JComboBox<String>();
+		startLocationbox.setBackground(Color.GREEN);
+		startLocationbox.setFont(f);
 		
 		// Defines endLocation drop-down
 		
-		JComboBox<String> endLocation = new JComboBox<String>();
+		endLocation = new JComboBox<String>();
 		endLocation.setFont(f);
 		endLocation.setBackground(Color.GREEN);
 		
@@ -195,7 +242,8 @@ public class startFrame {
 		
 		for(String locationName: hash.keySet()){
 			mapLocation mL = hash.get(locationName);
-			startLocation.addItem(mL.getName());
+			startLocationbox.addItem(mL.getName());
+			
 			endLocation.addItem(mL.getName());
 		}
 
@@ -212,7 +260,7 @@ public class startFrame {
 
 		panel.add(startText);
 
-		panel.add(startLocation);
+		panel.add(startLocationbox);
 
 		panel.add(endText);
 
