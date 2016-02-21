@@ -8,9 +8,9 @@ import java.util.Stack;
 public class locationMapHash extends HashMap<String, mapLocation>
 {
     int size;
-    Double LOW_SPEED = 25.0;
+    Double LOW_SPEED = 40.0;
     Double MEDIUM_SPEED = 50.0;
-    Double HIGH_SPEED = 100.0;
+    Double HIGH_SPEED = 70.0;
     
     // Used for recursive shortest path finding
     HashMap<Double, ArrayList<String>> paths;
@@ -66,7 +66,6 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 if (distance < min)
                 {
                     min = distance;
-//                  System.out.println(min);
                 }
             }
             result.add(min.toString());
@@ -106,11 +105,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 {
                 	nodesTraveled++;
                 	newLocationsTraveled.add(relation);
-//                	System.out.println(nodesTraveled);
-//                	System.out.println(this.get(relation).getName());
                     paths.put(newDistanceTraveled, newLocationsTraveled);
-//                  System.out.println(locationsTraveled);
-//                  System.out.println(newDistanceTraveled);
                     return;
                 }
                 else
@@ -133,7 +128,21 @@ public class locationMapHash extends HashMap<String, mapLocation>
             Double distanceTraveled = 0.0;
             ArrayList<String> locationsTraveled = new ArrayList<>();
             locationsTraveled.add(startLocation.getName());
-            timeTraveled += startLocation.distance(this.get(relation));
+            distanceTraveled += startLocation.distance(this.get(relation));
+            if(distanceTraveled < 75.0)
+            {
+            	timeTraveled += distanceTraveled / LOW_SPEED;
+            	System.out.println(1);
+            }
+            if(distanceTraveled >= 75.0 && distanceTraveled <= 100)
+            {
+            	timeTraveled += distanceTraveled / MEDIUM_SPEED;
+            }
+            if(distanceTraveled > 100.0)
+            {
+            	timeTraveled += distanceTraveled / HIGH_SPEED;
+            }
+            
             if (this.get(relation) == endLocation)
             {
                 paths.put(timeTraveled, locationsTraveled);
@@ -193,15 +202,16 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 
                 Double nextDistance = currMapLocation.distance(this.get(relation));
                 
-                if(nextDistance < 100.0)
+                if(nextDistance < 75.0)
                 {
                 	newTimeTraveled += nextDistance / LOW_SPEED;
+                	System.out.println(1);
                 }
-                if(nextDistance >= 100.0 && nextDistance <= 300)
+                if(nextDistance >= 75.0 && nextDistance <= 100)
                 {
                 	newTimeTraveled += nextDistance / MEDIUM_SPEED;
                 }
-                if(nextDistance > 300.0)
+                if(nextDistance > 100.0)
                 {
                 	newTimeTraveled += nextDistance / HIGH_SPEED;
                 }
@@ -212,11 +222,8 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 {
                 	nodesTraveled++;
                 	newLocationsTraveled.add(relation);
-//                	System.out.println(nodesTraveled);
-//                	System.out.println(this.get(relation).getName());
+                	System.out.println(newTimeTraveled);
                     paths.put(newTimeTraveled, newLocationsTraveled);
-//                  System.out.println(locationsTraveled);
-//                  System.out.println(newDistanceTraveled);
                     return;
                 }
                 else
@@ -274,26 +281,22 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 
                 if(nextDistance < 100.0)
                 {
-                	newTimeTraveled += nextDistance / LOW_SPEED;
+                	newTimeTraveled += (nextDistance / LOW_SPEED);
                 }
                 if(nextDistance >= 100.0 && nextDistance <= 300)
                 {
-                	newTimeTraveled += nextDistance / MEDIUM_SPEED;
+                	newTimeTraveled += (nextDistance / MEDIUM_SPEED);
                 }
                 if(nextDistance > 300.0)
                 {
-                	newTimeTraveled += nextDistance / HIGH_SPEED;
+                	newTimeTraveled += (nextDistance / HIGH_SPEED);
                 }
                 
                 newDistanceTraveled += nextDistance;
                 
                 if (newTimeTraveled > timeLimit)
                 {
-//                	System.out.println(nodesTraveled);
-//                	System.out.println(this.get(relation).getName());
                     costPaths.add(newLocationsTraveled);
-//                  System.out.println(locationsTraveled);
-//                  System.out.println(newDistanceTraveled);
                     return;
                 }
                 else
@@ -351,11 +354,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 
                 if (newDistanceTraveled > distanceLimit)
                 {
-//                	System.out.println(nodesTraveled);
-//                	System.out.println(this.get(relation).getName());
                     costPaths.add(newLocationsTraveled);
-//                  System.out.println(locationsTraveled);
-//                  System.out.println(newDistanceTraveled);
                     return;
                 }
                 else
