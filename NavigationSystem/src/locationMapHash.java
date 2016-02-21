@@ -12,7 +12,11 @@ public class locationMapHash extends HashMap<String, mapLocation>
     Double MEDIUM_SPEED = 50.0;
     Double HIGH_SPEED = 100.0;
     
+    // Used for recursive shortest path finding
     HashMap<Double, ArrayList<String>> paths;
+    
+    // Used for recursive time/distance specified path finding
+    ArrayList<ArrayList<String>> costPaths;
 
     public locationMapHash()
     {
@@ -29,10 +33,10 @@ public class locationMapHash extends HashMap<String, mapLocation>
     
     
 
-    public ArrayList<Object> startingDistance(mapLocation startLocation, mapLocation endLocation)
+    public ArrayList<String> startingDistance(mapLocation startLocation, mapLocation endLocation)
     {
         paths = new HashMap<>();
-        ArrayList<Object> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
         
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
@@ -50,10 +54,10 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 distance(relation, locationsTraveled, distanceTraveled, endLocation, nodesTraveled);
             }
         }
-        double min = 0;
+        Double min = 0.0;
         if (paths.size() != 0)
         {
-            for (double distance : paths.keySet())
+            for (Double distance : paths.keySet())
             {
                 if (min == 0)
                 {
@@ -66,8 +70,11 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 }
             }
         }
-        result.add(min);
-        result.add(paths.get(min));
+        result.add(min.toString());
+        for(String location: paths.get(min))
+        {
+        	result.add(location);
+        }
         return result;
     }
 
@@ -108,10 +115,10 @@ public class locationMapHash extends HashMap<String, mapLocation>
         }
     }
 
-    public ArrayList<Object> startingTime(mapLocation startLocation, mapLocation endLocation)
+    public ArrayList<String> startingTime(mapLocation startLocation, mapLocation endLocation)
     {
         paths = new HashMap<>();
-        ArrayList<Object> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
         
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
@@ -130,10 +137,10 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 time(relation, locationsTraveled, distanceTraveled, timeTraveled, endLocation, nodesTraveled);
             }
         }
-        double min = 0;
+        Double min = 0.0;
         if (paths.size() != 0)
         {
-            for (double time : paths.keySet())
+            for (Double time : paths.keySet())
             {
                 if (min == 0)
                 {
@@ -142,12 +149,14 @@ public class locationMapHash extends HashMap<String, mapLocation>
                 if (time < min)
                 {
                     min = time;
-//                  System.out.println(min);
                 }
             }
         }
-        result.add(min);
-        result.add(paths.get(min));
+        result.add(min.toString());
+        for(String location: paths.get(min))
+        {
+        	result.add(location);
+        }
         return result;
     }
 
@@ -205,9 +214,143 @@ public class locationMapHash extends HashMap<String, mapLocation>
         }
     }
 
-    public mapLocation nearestLocationsByTime(mapLocation startLocation, int maxTime)
+    public ArrayList<ArrayList<String>> tripTimePlanner(mapLocation startLocation, double timeToTravel)
     {
-        return null;
+    	costPaths = new ArrayList<ArrayList<String>>();
+        
+        int nodesTraveled = 0;
+        for (String relation: startLocation.getRelations())
+        {
+            double timeTraveled = 0.0;
+            double distanceTraveled = 0.0;
+            
+            ArrayList<String> locationsTraveled = new ArrayList<>();
+            locationsTraveled.add(startLocation.getName());
+            timeTraveled += startLocation.distance(this.get(relation));
+            if (timeToTravel == 0)
+            {
+                costPaths.add(locationsTraveled);
+            }
+            else
+            {
+                timePlannerRecurse(relation, locationsTraveled, distanceTraveled, timeTraveled, nodesTraveled, timeToTravel);
+            }
+        }
+        return costPaths;
+    }
+    
+    public void timePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, double timeTraveled, int nodesTraveled, double timeLimit)
+    {
+    	locationsTraveled.add(currentLocation);
+        mapLocation currMapLocation = this.get(currentLocation);
+        nodesTraveled++;
+        
+        for (String relation: currMapLocation.getRelations())
+        {
+            if (!locationsTraveled.contains(relation))
+            {
+                double newTimeTraveled = timeTraveled;
+                double newDistanceTraveled = distanceTraveled;
+
+                ArrayList<String> newLocationsTraveled = new ArrayList<String>();
+                for(String location: locationsTraveled) {
+                	newLocationsTraveled.add(location);
+                }
+                
+                double nextDistance = currMapLocation.distance(this.get(relation));
+                
+                if(nextDistance < 100.0)
+                {
+                	newTimeTraveled += nextDistance / LOW_SPEED;
+                }
+                if(nextDistance >= 100.0 && nextDistance <= 300)
+                {
+                	newTimeTraveled += nextDistance / MEDIUM_SPEED;
+                }
+                if(nextDistance > 300.0)
+                {
+                	newTimeTraveled += nextDistance / HIGH_SPEED;
+                }
+                
+                newDistanceTraveled += nextDistance;
+                
+                if (newTimeTraveled > timeLimit)
+                {
+//                	System.out.println(nodesTraveled);
+//                	System.out.println(this.get(relation).getName());
+                    costPaths.add(newLocationsTraveled);
+//                  System.out.println(locationsTraveled);
+//                  System.out.println(newDistanceTraveled);
+                    return;
+                }
+                else
+                {
+                    timePlannerRecurse(relation, newLocationsTraveled, newDistanceTraveled, newTimeTraveled, nodesTraveled, timeLimit);
+                }
+            }
+        }
+    }
+    
+    public ArrayList<ArrayList<String>> tripDistancePlanner(mapLocation startLocation, double distanceToTravel)
+    {
+    	costPaths = new ArrayList<ArrayList<String>>();
+	        
+        int nodesTraveled = 0;
+        for (String relation: startLocation.getRelations())
+        {
+            double distanceTraveled = 0.0;
+            ArrayList<String> locationsTraveled = new ArrayList<>();
+            locationsTraveled.add(startLocation.getName());
+            
+            if (distanceToTravel == 0)
+            {
+                costPaths.add(locationsTraveled);
+            }
+            else
+            {
+                distancePlannerRecurse(relation, locationsTraveled, distanceTraveled, nodesTraveled, distanceToTravel);
+            }
+        }
+        
+        return costPaths;
+    }
+    
+    public void distancePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, int nodesTraveled, double distanceLimit)
+    {
+    	locationsTraveled.add(currentLocation);
+        mapLocation currMapLocation = this.get(currentLocation);
+        nodesTraveled++;
+        
+        for (String relation: currMapLocation.getRelations())
+        {
+            if (!locationsTraveled.contains(relation))
+            {
+                double newDistanceTraveled = distanceTraveled;
+
+                ArrayList<String> newLocationsTraveled = new ArrayList<String>();
+                for(String location: locationsTraveled) {
+                	newLocationsTraveled.add(location);
+                }
+                
+                double nextDistance = currMapLocation.distance(this.get(relation));
+
+                newDistanceTraveled += nextDistance;
+                
+                if (newDistanceTraveled > distanceLimit)
+                {
+//                	System.out.println(nodesTraveled);
+//                	System.out.println(this.get(relation).getName());
+                    costPaths.add(newLocationsTraveled);
+//                  System.out.println(locationsTraveled);
+//                  System.out.println(newDistanceTraveled);
+                    return;
+                }
+                else
+                {
+                    distancePlannerRecurse(relation, newLocationsTraveled, newDistanceTraveled, nodesTraveled, distanceLimit);
+                }
+            }
+        }
     }
 
     public ArrayList<String> sortByInterest()
