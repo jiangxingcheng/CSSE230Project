@@ -41,7 +41,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
-            double distanceTraveled = 0;
+            Double distanceTraveled = 0.0;
             ArrayList<String> locationsTraveled = new ArrayList<>();
             locationsTraveled.add(startLocation.getName());
             distanceTraveled += startLocation.distance(this.get(relation));
@@ -69,16 +69,22 @@ public class locationMapHash extends HashMap<String, mapLocation>
 //                  System.out.println(min);
                 }
             }
+            result.add(min.toString());
+	        for(String location: paths.get(min))
+	        {
+	        	result.add(location);
+	        }
+	        return result;
         }
-        result.add(min.toString());
-        for(String location: paths.get(min))
+        else
         {
-        	result.add(location);
+	        result.add(min.toString());
+	        
+	        return result;
         }
-        return result;
     }
 
-    public void distance(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, mapLocation endLocation, int nodesTraveled)
+    public void distance(String currentLocation, ArrayList<String> locationsTraveled, Double distanceTraveled, mapLocation endLocation, int nodesTraveled)
     {
         locationsTraveled.add(currentLocation);
         mapLocation currMapLocation = this.get(currentLocation);
@@ -88,7 +94,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
         {
             if (!locationsTraveled.contains(relation))
             {
-                double newDistanceTraveled = distanceTraveled;
+                Double newDistanceTraveled = distanceTraveled;
 
                 ArrayList<String> newLocationsTraveled = new ArrayList<String>();
                 for(String location: locationsTraveled) {
@@ -123,8 +129,8 @@ public class locationMapHash extends HashMap<String, mapLocation>
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
-            double timeTraveled = 0;
-            double distanceTraveled = 0;
+            Double timeTraveled = 0.0;
+            Double distanceTraveled = 0.0;
             ArrayList<String> locationsTraveled = new ArrayList<>();
             locationsTraveled.add(startLocation.getName());
             timeTraveled += startLocation.distance(this.get(relation));
@@ -138,6 +144,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
             }
         }
         Double min = 0.0;
+        
         if (paths.size() != 0)
         {
             for (Double time : paths.keySet())
@@ -151,16 +158,22 @@ public class locationMapHash extends HashMap<String, mapLocation>
                     min = time;
                 }
             }
+            result.add(min.toString());
+            for(String location: paths.get(min))
+            {
+            	result.add(location);
+            }
+            return result;
         }
-        result.add(min.toString());
-        for(String location: paths.get(min))
+        else
         {
-        	result.add(location);
+	        result.add(min.toString());
+	        
+	        return result;
         }
-        return result;
     }
 
-    public void time(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled , double timeTraveled, mapLocation endLocation, int nodesTraveled)
+    public void time(String currentLocation, ArrayList<String> locationsTraveled, Double distanceTraveled , Double timeTraveled, mapLocation endLocation, int nodesTraveled)
     {
     	locationsTraveled.add(currentLocation);
         mapLocation currMapLocation = this.get(currentLocation);
@@ -170,15 +183,15 @@ public class locationMapHash extends HashMap<String, mapLocation>
         {
             if (!locationsTraveled.contains(relation))
             {
-                double newTimeTraveled = timeTraveled;
-                double newDistanceTraveled = distanceTraveled;
+                Double newTimeTraveled = timeTraveled;
+                Double newDistanceTraveled = distanceTraveled;
 
                 ArrayList<String> newLocationsTraveled = new ArrayList<String>();
                 for(String location: locationsTraveled) {
                 	newLocationsTraveled.add(location);
                 }
                 
-                double nextDistance = currMapLocation.distance(this.get(relation));
+                Double nextDistance = currMapLocation.distance(this.get(relation));
                 
                 if(nextDistance < 100.0)
                 {
@@ -214,15 +227,15 @@ public class locationMapHash extends HashMap<String, mapLocation>
         }
     }
 
-    public ArrayList<ArrayList<String>> tripTimePlanner(mapLocation startLocation, double timeToTravel)
+    public ArrayList<ArrayList<String>> tripTimePlanner(mapLocation startLocation, Double timeToTravel)
     {
     	costPaths = new ArrayList<ArrayList<String>>();
         
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
-            double timeTraveled = 0.0;
-            double distanceTraveled = 0.0;
+            Double timeTraveled = 0.0;
+            Double distanceTraveled = 0.0;
             
             ArrayList<String> locationsTraveled = new ArrayList<>();
             locationsTraveled.add(startLocation.getName());
@@ -239,7 +252,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
         return costPaths;
     }
     
-    public void timePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, double timeTraveled, int nodesTraveled, double timeLimit)
+    public void timePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, Double distanceTraveled, Double timeTraveled, int nodesTraveled, Double timeLimit)
     {
     	locationsTraveled.add(currentLocation);
         mapLocation currMapLocation = this.get(currentLocation);
@@ -249,15 +262,15 @@ public class locationMapHash extends HashMap<String, mapLocation>
         {
             if (!locationsTraveled.contains(relation))
             {
-                double newTimeTraveled = timeTraveled;
-                double newDistanceTraveled = distanceTraveled;
+                Double newTimeTraveled = timeTraveled;
+                Double newDistanceTraveled = distanceTraveled;
 
                 ArrayList<String> newLocationsTraveled = new ArrayList<String>();
                 for(String location: locationsTraveled) {
                 	newLocationsTraveled.add(location);
                 }
                 
-                double nextDistance = currMapLocation.distance(this.get(relation));
+                Double nextDistance = currMapLocation.distance(this.get(relation));
                 
                 if(nextDistance < 100.0)
                 {
@@ -291,14 +304,14 @@ public class locationMapHash extends HashMap<String, mapLocation>
         }
     }
     
-    public ArrayList<ArrayList<String>> tripDistancePlanner(mapLocation startLocation, double distanceToTravel)
+    public ArrayList<ArrayList<String>> tripDistancePlanner(mapLocation startLocation, Double distanceToTravel)
     {
     	costPaths = new ArrayList<ArrayList<String>>();
 	        
         int nodesTraveled = 0;
         for (String relation: startLocation.getRelations())
         {
-            double distanceTraveled = 0.0;
+            Double distanceTraveled = 0.0;
             ArrayList<String> locationsTraveled = new ArrayList<>();
             locationsTraveled.add(startLocation.getName());
             
@@ -315,7 +328,7 @@ public class locationMapHash extends HashMap<String, mapLocation>
         return costPaths;
     }
     
-    public void distancePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, double distanceTraveled, int nodesTraveled, double distanceLimit)
+    public void distancePlannerRecurse(String currentLocation, ArrayList<String> locationsTraveled, Double distanceTraveled, int nodesTraveled, Double distanceLimit)
     {
     	locationsTraveled.add(currentLocation);
         mapLocation currMapLocation = this.get(currentLocation);
@@ -325,14 +338,14 @@ public class locationMapHash extends HashMap<String, mapLocation>
         {
             if (!locationsTraveled.contains(relation))
             {
-                double newDistanceTraveled = distanceTraveled;
+                Double newDistanceTraveled = distanceTraveled;
 
                 ArrayList<String> newLocationsTraveled = new ArrayList<String>();
                 for(String location: locationsTraveled) {
                 	newLocationsTraveled.add(location);
                 }
                 
-                double nextDistance = currMapLocation.distance(this.get(relation));
+                Double nextDistance = currMapLocation.distance(this.get(relation));
 
                 newDistanceTraveled += nextDistance;
                 
